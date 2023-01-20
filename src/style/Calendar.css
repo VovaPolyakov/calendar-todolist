@@ -1,0 +1,22 @@
+.calendar-container{
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    width: 70%;
+    justify-content: space-between;
+}
+
+.calendar-text{
+    width: 100%;
+    height: 50px;
+}
+.calendar-add{
+    width: 100%;
+}
+
+.calendar-todo{
+    border: 1px solid black;
+}
+.calendar-input{
+    width: 84%;
+}
