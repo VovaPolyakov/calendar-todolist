@@ -19,6 +19,7 @@ export const ToDoContextProvider = ({children}) => {
     //     })
     // }
     const removeToDo = (deleteItems) => {
+        console.log(deleteItems)
         const updateTodo = toDo.items.map((item) => {
             if(deleteItems.id == item.id){
               return {
@@ -37,6 +38,7 @@ export const ToDoContextProvider = ({children}) => {
         <ToDoContext.Provider value={{
             toDo,
             setToDo,
+            removeToDo,
             items:toDo.items
         }}>
         {children}

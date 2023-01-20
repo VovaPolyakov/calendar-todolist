@@ -8,11 +8,11 @@ import { ToDoContext } from '../../Context/ToDoContext';
 const ToDoCalendar = () => {
   const [date,setDate] = useState(new Date())
   const [value,setValue] = useState('')
-  const {items,setToDo,toDo,showToDo} = useContext(ToDoContext)
+  const {removeToDo,setToDo,toDo} = useContext(ToDoContext)
 
   const handleChange = (e) => {
     setValue(e.target.value)
-    showToDo(date)
+
   }
   const handleAdd = () => {
     setToDo({
@@ -22,6 +22,13 @@ const ToDoCalendar = () => {
       ]
     })
     setValue('')
+  }
+  const handleDelete = (e) => {
+    toDo.items.map((item) => {
+      if(e.target.id == item.id){
+        removeToDo(item)
+      }
+    })
   }
   return (
     <div className='calendar-container'>
@@ -35,7 +42,10 @@ const ToDoCalendar = () => {
       </p>
       <div className='calendar-todo'>
         {toDo.items.map((item) => (
-          item.date == date.toLocaleDateString() ? <p className='calendar-text'>{item.name}</p> : ''
+          item.date == date.toLocaleDateString() ? item.status ? <div key={item.id}>
+            <p className='calendar-text'>{item.name}</p>
+            <button id={item.id} onClick={handleDelete}>Delete</button>
+          </div> : '' : ''
         ))}
         <div className='calendar-add'>
           <input className='calendar-input' value={value} onChange={handleChange}></input>
